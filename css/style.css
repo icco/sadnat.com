@@ -82,21 +82,15 @@ button {  width: auto; overflow: visible; }
 .clearfix { zoom: 1; }
 
 
- /* Primary Styles
-    Author: Nat Welch
+/** 
+ * Primary Styles
+ * Author: Nat Welch
  */
-
 #container {
-   width: 200px;
-   margin: 100px auto;
-   font-size: 30px;
-   font: monospace;
+   font-size: 50px;
+   margin: 175px auto 0;
+   width: 250px;
 }
-
-
-
-
-
 
 
 
