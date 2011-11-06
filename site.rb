@@ -1,9 +1,12 @@
 #!/usr/bin/env ruby
-# An app for ...
+# Sad Nat .com is now dynamic bitches.
 # @author Nat Welch - https://github.com/icco
 
 configure do
+   # Sessions baby!
    set :sessions, true
+
+   # This is how we use heroku's database.
    DB = Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://data.db')
 end
 
