@@ -63,19 +63,7 @@ end
 
 get '/authed' do
   begin
-    p params
-    session["oauth"] = {
-      "token" => params["oauth_token"],
-      "verifier" => params["oauth_verifier"]
-    }
-
-    token_hash = {
-      :oauth_token => session["oauth"]["token"],
-      :oauth_token_secret => session["oauth"]["verifier"]
-    }
-    access_token = OAuth::AccessToken.from_hash(client, token_hash)
-    response = access_token.request(:get, "http://api.twitter.com/1/users/lookup.format")
-    p response
+    response = @client.request(:get, "http://api.twitter.com/1/users/lookup.format")
     return response.inspect
 
     user = JSON.parse(response)
