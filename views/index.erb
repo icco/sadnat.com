@@ -36,7 +36,7 @@
     <div class="reasons">
       <% entries.each do |e| %>
         <div class="<%= entries.index(e).odd? ? "odd" : "even" %>">
-          &quot;<%= h e.reason %>&quot;&mdash;
+          &quot;<%= h e.reason %>&quot; &mdash;
           <span class="when"><a href="/view/<%= e.id %>"><%= e.date.humanize %></a></span>
           <span class="by">via
             <% if !e.username.nil? %>
