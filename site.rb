@@ -12,6 +12,16 @@ configure do
   # Twiter Keys
   CONS_KEY = 'aPtehhMPyIGjjKnAngkkQ'
   CONS_SEC = ENV['TWITTER_SECRET']
+
+  Twitter.configure do |config|
+    config.consumer_key = CONS_KEY
+    config.consumer_secret = CONS_SEC
+  end
+end
+
+# Oauth Stuff for Twitter
+def client
+  client = Twitter::Client.new
 end
 
 get '/' do
@@ -25,16 +35,6 @@ end
 get '/style.css' do
   content_type 'text/css', :charset => 'utf-8'
   sass :style
-end
-
-# Oauth Stuff for Twitter
-def client
-  OAuth2::Client.new(CONS_KEY, CONS_SEC, {
-    :raise_errors => false,
-    :site => 'https://api.twitter.com/',
-    :authorize_url => 'https://api.twitter.com/oauth/authorize',
-    :token_url => 'https://api.twitter.com/oauth/access_token'
-  })
 end
 
 get '/login' do
