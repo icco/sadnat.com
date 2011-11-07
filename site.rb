@@ -54,7 +54,7 @@ end
 
 get '/style.css' do
   content_type 'text/css', :charset => 'utf-8'
-  sass :style
+  scss :style, :style => :compressed
 end
 
 get '/login' do

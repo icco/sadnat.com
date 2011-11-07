@@ -1,0 +1,91 @@
+body {
+   background-image: url(images/stucco.png);
+}
+
+a img {
+   border: none;
+}
+
+div.top, div.reasons {
+   margin: 20px auto;
+   width: 960px;
+   font-family: "PT Serif", serif;
+   overflow: hidden;
+
+   div.sad {
+      float: left;
+      width: 360px;
+   }
+   div.update {
+      float: left;
+      margin-top: 25px;
+      width: 600px;
+   }
+}
+
+div.update {
+   overflow: hidden;
+
+   p.intro {
+      margin: 0px;
+      font-size: 48px;
+   }
+   input.reason  {
+      width: 586px;
+      padding: 5px;
+      font-family: "PT Serif", serif;
+      font-size: 32px;
+      line-height: 40px;
+   }
+   input.submit {
+      float: right;
+      margin-right: -2px;
+   }
+   p.auth {
+      float: right;
+      margin: 14px 10px;
+      span {
+         input, label {
+            cursor: pointer;
+         }
+         margin-right: 20px;
+      }
+   }
+}
+
+div.reasons {
+   font-family: "PT Serif", serif;
+
+   div {
+      margin: 5px 0px;
+      padding: 3px 6px;
+
+      span {
+         color: #333;
+      }
+
+      span.by {
+         font-style: italic;
+         a {
+            color: #339;
+            text-decoration: none;
+         }
+         a:hover, a:active {
+            color: #36c;
+         }
+      }
+
+      p.response {
+         margin: 0px;
+         padding: 2px 30px;
+         font-style: italic;
+         background-image: url(images/response.png);
+         background-repeat: no-repeat;
+         background-position: 12px center;
+      }
+   }
+
+   div.odd {
+      background-color: rgba(128, 128, 128, 0.15);
+   }
+}
