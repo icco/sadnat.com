@@ -68,7 +68,7 @@ post '/view/:id' do
     entry = Entry.where(:id => params["id"]).first
     entry.response = params["response"]
     entry.show = params["show"]
-    entry.sav
+    entry.save
   end
 
   redirect "/view/#{entry.id}"
