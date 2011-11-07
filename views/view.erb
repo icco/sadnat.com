@@ -6,10 +6,9 @@
     <link href="/style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <h1><a href="/">Sad Nat</a> because ...</h1>
     <div class="reasons">
       <div class="odd">
-        &quot;<%= h entry.reason %>&quot;&mdash;
+        <a href="/">Sad Nat</a> because &quot;<%= h entry.reason %>&quot;&mdash;
         <span class="when"><a href="/view/<%= entry.id %>"><%= entry.date.humanize %></a></span>
         <span class="by">via
           <% if !entry.username.nil? %>
