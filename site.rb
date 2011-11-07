@@ -14,14 +14,34 @@ configure do
   CONS_SEC = ENV['TWITTER_SECRET']
 end
 
-# Oauth Stuff for Twitter
-def client
-  OAuth::Consumer.new(CONS_KEY, CONS_SEC, {
-    :site => 'http://twitter.com/',
-    :request_token_path => '/oauth/request_token',
-    :access_token_path => '/oauth/access_token',
-    :authorize_path => '/oauth/authorize'
-  })
+# http://www.lmcalpin.com/post/1178799294/a-little-sinatra-oauth-ditty
+before do
+  session[:oauth] ||= {}
+  @consumer = OAuth::Consumer.new(CONS_KEY, CONS_SEC, { :site => 'http://twitter.com/' })
+
+  # generate a request token for this user session if we haven't already
+  request_token = session[:oauth][:request_token]
+  request_token_secret = session[:oauth][:request_token_secret]
+  if request_token.nil? || request_token_secret.nil?
+    # new user? create a request token and stick it in their session
+    @request_token = @consumer.get_request_token(:oauth_callback => "http://#{request.host}/authed")
+    session[:oauth][:request_token] = @request_token.token
+    session[:oauth][:request_token_secret] = @request_token.secret
+  else
+    # we made this user's request token before, so recreate the object
+    @request_token = OAuth::RequestToken.new(@consumer, request_token, request_token_secret)
+  end
+
+  # this is what we came here for...
+  access_token = session[:oauth][:access_token]
+  access_token_secret = session[:oauth][:access_token_secret]
+  unless access_token.nil? || access_token_secret.nil?
+    # the ultimate goal is to get here, where we can create our Twitter @client object
+    @access_token = OAuth::AccessToken.new(@consumer, access_token, access_token_secret)
+    oauth = Twitter::OAuth.new(CONS_KEY, CONS_SEC)
+    oauth.authorize_from_access(@access_token.token, @access_token.secret)
+    @client = Twitter::Base.new(oauth)
+  end
 end
 
 get '/' do
@@ -38,9 +58,7 @@ get '/style.css' do
 end
 
 get '/login' do
-  request_token = client.get_request_token(:oauth_callback => "http://#{request.host}/authed")
-  url = request_token.authorize_url
-  redirect url
+  redirect @request_token.authorize_url
 end
 
 get '/authed' do
@@ -56,9 +74,9 @@ get '/authed' do
       :oauth_token_secret => session["oauth"]["verifier"]
     }
     access_token = OAuth::AccessToken.from_hash(client, token_hash)
-    response = access_token.request(:get, "http://api.twitter.com/1/statuses/home_timeline.json")
+    response = access_token.request(:get, "http://api.twitter.com/1/users/lookup.format")
     p response
-    return response
+    return response.inspect
 
     user = JSON.parse(response)
 
