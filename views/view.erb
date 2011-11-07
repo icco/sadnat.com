@@ -17,7 +17,7 @@
             Anonymous
           <% end %>
         </span>
-        <% if entry.response %>
+        <% if !entry.response.nil? && !entry.response.empty? %>
           <p class="response">
           &quot;<%= h entry.response %>&quot; /Nat
           </p>
