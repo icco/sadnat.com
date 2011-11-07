@@ -40,7 +40,6 @@ end
 get '/login' do
   request_token = client.get_request_token(:oauth_callback => "http://#{request.host}/authed")
   url = request_token.authorize_url
-
   redirect url
 end
 
@@ -56,7 +55,8 @@ get '/authed' do
     session['token'] = access_token.token
 
     %(<p>Your OAuth access token: #{access_token.token}</p><p>Your extended profile data:\n#{user.inspect}</p>)
-  rescue OAuth2::Error => e
+  rescue OAuth::Error => e
+    p e
     %(<p>Outdated ?code=#{params[:code]}:</p><p>#{$!}</p><p><a href="/login">Retry</a></p>)
   end
 end
