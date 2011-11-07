@@ -59,7 +59,10 @@ end
 post '/' do
   session["unfinished"] = nil
 
-  # TODO: move to function
+  p params
+  p session
+
+  # TODO: move to a function
   if params["auth"] == "anon" || (params["auth"] == "twitter" && !session["user"].nil?)
     entry = Entry.new
     entry.date = Time.now
@@ -98,7 +101,7 @@ get '/authed' do
     # Pull out the data we care about
     session['user'] = user['screen_name']
 
-    # TODO: move to function
+    # TODO: move to a function
     if !session["unfinished"].nil?
       entry = Entry.new
       entry.date = Time.now
