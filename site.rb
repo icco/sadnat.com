@@ -66,13 +66,12 @@ get '/authed' do
 
   begin
     response = @access_token.get('/account/verify_credentials.json')
-    return response.inspect
+    p response.body
 
-    user = JSON.parse(response)
+    user = JSON.parse(response.body)
 
     # Pull out the data we care about
-    session['user'] = user["login"]
-    session['token'] = access_token.token
+    session['user'] = user['screen_name']
 
     %(<p>Your OAuth access token: #{access_token.token}</p><p>Your extended profile data:\n#{user.inspect}</p>)
   rescue OAuth::Error => e
