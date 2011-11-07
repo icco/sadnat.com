@@ -7,7 +7,11 @@ task :db do
   require "sequel"
 
   db_url = ENV['DATABASE_URL'] || "sqlite://data.db"
-  Kernel.system("sequel -m ./db/ #{db_url}");
+  ret = Kernel.system("sequel -m ./db/ #{db_url}");
 
-  puts "Database migrated."
+  if ret
+    puts "Database migrated."
+  else
+    puts "Database migration failed."
+  end
 end
