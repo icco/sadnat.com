@@ -1,3 +1,12 @@
-This site serves no purpose. 
+# Sad Nat
 
-I used the HTML5 Boilerplate just to have so much absurd bloat for two words.
+Essentially a site for dealing with how people percieve nat's bitching.
+
+By @icco and @dmpatierno
+
+## Development
+
+ * `gem install shotgun bundler heroku`
+ * `bundle install`
+ * `shotgun`
+
