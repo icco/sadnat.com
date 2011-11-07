@@ -56,7 +56,7 @@ get '/' do
 end
 
 get '/view/:id' do
-  erb :view, :locals => { "entry" => Entry.find(params["id"] }
+  erb :view, :locals => { "entry" => Entry.find(params["id"]) }
 end
 
 post '/' do
