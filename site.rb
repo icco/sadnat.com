@@ -65,14 +65,13 @@ get '/authed' do
   @access_token = @request_token.get_access_token
 
   begin
-    response = @access_token.get("http://api.twitter.com/1/users/lookup.json")
-    return response.inspect
+    response = @access_token.get('/account/verify_credentials.json')
+    p response.body
 
-    user = JSON.parse(response)
+    user = JSON.parse(response.body)
 
     # Pull out the data we care about
-    session['user'] = user["login"]
-    session['token'] = access_token.token
+    session['user'] = user['screen_name']
 
     %(<p>Your OAuth access token: #{access_token.token}</p><p>Your extended profile data:\n#{user.inspect}</p>)
   rescue OAuth::Error => e
