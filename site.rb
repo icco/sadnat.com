@@ -23,7 +23,7 @@ end
 # http://www.lmcalpin.com/post/1178799294/a-little-sinatra-oauth-ditty
 before do
   session["user"] = nil
-  session["oauth"] ||= {}
+  session[:oauth] ||= {}
 
   @consumer = OAuth::Consumer.new(CONS_KEY, CONS_SEC, { :site => 'http://twitter.com/' })
 
