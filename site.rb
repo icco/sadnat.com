@@ -65,7 +65,7 @@ get '/authed' do
   @access_token = @request_token.get_access_token
 
   begin
-    response = @access_token.get("http://api.twitter.com/1/users/lookup.json")
+    response = @access_token.get('/account/verify_credentials.json')
     return response.inspect
 
     user = JSON.parse(response)
