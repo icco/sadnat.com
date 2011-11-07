@@ -23,7 +23,7 @@ end
 # http://www.lmcalpin.com/post/1178799294/a-little-sinatra-oauth-ditty
 before do
   session["user"] = nil
-  session[:oauth] ||= {}
+  session["oauth"] ||= {}
 
   @consumer = OAuth::Consumer.new(CONS_KEY, CONS_SEC, { :site => 'http://twitter.com/' })
 
@@ -126,7 +126,7 @@ end
 class Time
   def humanize
     if Time.now.strftime("%F") == self.strftime("%F")
-      Time.now.strftime("%l%P")
+      Time.now.strftime("%i %P")
     elsif Time.now.year == self.year
       Time.now.strftime("%b %e")
     else
