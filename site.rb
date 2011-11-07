@@ -59,6 +59,16 @@ get '/view/:id' do
   erb :view, :locals => { "entry" => Entry.where(:id => params["id"]).first }
 end
 
+post '/view/:id' do
+  if session["user"] == "icco"
+    entry = Entry.where(:id => params["id"]).first
+    entry = params["response"]
+    entry.save
+  end
+
+  redirect "/view/#{entry.id}"
+end
+
 post '/' do
   session["unfinished"] = nil
 

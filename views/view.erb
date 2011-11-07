@@ -22,6 +22,12 @@
           &quot;<%= h entry.response %>&quot; /Nat
           </p>
         <% end %>
+        <% if session["user"] == "icco" %>
+          <form action="/view/<%= entry.id %>" method="post">
+            <input class="response" value="<%= entry.response %>" type="text" name="response" maxlength="255" />
+            <input class="submit" />
+          </form>
+        <% end %>
       </div>
     </div>
 
