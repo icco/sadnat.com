@@ -55,6 +55,10 @@ get '/' do
   erb :index, :locals => { "entries" => Entry.reverse_order(:date).all }
 end
 
+get '/about' do
+  erb :about
+end
+
 get '/view/:id' do
   erb :view, :locals => { "entry" => Entry.where(:id => params["id"]).first }
 end

@@ -16,6 +16,7 @@ div.top, div.reasons {
       float: left;
       width: 360px;
    }
+
    div.update {
       float: left;
       margin-top: 25px;
@@ -29,6 +30,10 @@ div.update {
    p.intro {
       margin: 0px;
       font-size: 48px;
+      a, a:visited {
+        color: black;
+        text-decoration: none;
+      }
    }
    input.reason  {
       width: 586px;
@@ -56,7 +61,7 @@ div.update {
 #footer {
    font-family: monospace;
    background-color: rgba(128, 128, 128, 0.15);
-   width: 200px;
+   width: 250px;
    margin: 0 auto;
    text-align: center;
    padding: 3px;
