@@ -17,6 +17,11 @@
             Anonymous
           <% end %>
         </span>
+        <% if !entry.show %>
+          <span class="hidden">
+            (hidden)
+          </span>
+        <% end %>
         <% if !entry.response.nil? && !entry.response.empty? %>
           <p class="response">
           &quot;<%= h entry.response %>&quot; /Nat
