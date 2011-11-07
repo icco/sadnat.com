@@ -14,8 +14,15 @@ configure do
   CONS_SEC = ENV['TWITTER_SECRET']
 end
 
+# To help us not dump scary stuff.
+helpers do
+  include Rack::Utils
+  alias_method :h, :escape_html
+end
+
 # http://www.lmcalpin.com/post/1178799294/a-little-sinatra-oauth-ditty
 before do
+  session["user"] = nil
   session[:oauth] ||= {}
   @consumer = OAuth::Consumer.new(CONS_KEY, CONS_SEC, { :site => 'http://twitter.com/' })
 
@@ -45,12 +52,15 @@ before do
 end
 
 get '/' do
-  erb :index, :locals => {
-    "entries" => Entry.all
-  }
+  erb :index, :locals => { "entries" => Entry.all }
 end
 
 post '/' do
+  entry = Entry.new
+  entry.date = Time.now
+  entry.username = session["user"]
+  entry.save
+
   redirect '/'
 end
 
