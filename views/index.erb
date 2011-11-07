@@ -45,6 +45,11 @@
              Anonymous
            <% end %>
          </span>
+         <% if !e.response? %>
+           <p class="response">
+             &quot;<%= h e.response %>&quot; /Nat
+           </p>
+         <% end %>
        </div>
      <% end %>
 
@@ -55,17 +60,6 @@
          <p class="response">
             &quot;In my defense, I'm an asshole.&quot; /Nat
          </p>
-      </div>
-
-      <div class="even">
-         &quot;He has too many 'fucking' projects.&quot;&mdash;
-         <span class="when">Nov 6</span>
-         <span class="by">via <a href="http://twitter.com/dmpatierno">@dmpatierno</a></span>
-      </div>
-      <div class="odd">
-         &quot;He listens to emo music.&quot;&mdash;
-         <span class="when">Nov 6 '11</span>
-         <span class="by">via <a href="http://twitter.com/dmpatierno">@dmpatierno</a></span>
       </div>
    </div>
 
