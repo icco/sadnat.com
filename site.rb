@@ -62,7 +62,7 @@ end
 post '/view/:id' do
   if session["user"] == "icco"
     entry = Entry.where(:id => params["id"]).first
-    entry = params["response"]
+    entry.response = params["response"]
     entry.save
   end
 
