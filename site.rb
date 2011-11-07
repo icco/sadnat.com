@@ -12,16 +12,16 @@ configure do
   # Twiter Keys
   CONS_KEY = 'aPtehhMPyIGjjKnAngkkQ'
   CONS_SEC = ENV['TWITTER_SECRET']
-
-  Twitter.configure do |config|
-    config.consumer_key = CONS_KEY
-    config.consumer_secret = CONS_SEC
-  end
 end
 
 # Oauth Stuff for Twitter
 def client
-  client = Twitter::Client.new
+  OAuth::Consumer.new(CONS_KEY, CONS_SEC, {
+    :site => 'http://twitter.com/',
+    :request_token_path => '/oauth/request_token',
+    :access_token_path => '/oauth/access_token',
+    :authorize_path => '/oauth/authorize'
+  })
 end
 
 get '/' do
@@ -38,13 +38,15 @@ get '/style.css' do
 end
 
 get '/login' do
-  url = client.auth_code.authorize_url()
-  puts "Redirecting to URL: #{url.inspect}"
+  request_token = client.get_request_token
+  url = request_token.authorize_url
+
   redirect url
 end
 
 get '/authed' do
   begin
+    p params
     session["code"] = params[:code]
     access_token = client.auth_code.get_token(params[:code])
     user = JSON.parse(access_token.get('/user').body)
