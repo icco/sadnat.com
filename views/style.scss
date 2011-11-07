@@ -62,17 +62,20 @@ div.reasons {
 
       span {
          color: #333;
-      }
-
-      span.by {
-         font-style: italic;
-         a {
+         a, a:visited {
             color: #339;
             text-decoration: none;
          }
          a:hover, a:active {
             color: #36c;
          }
+      }
+
+      span.by {
+        font-style: italic;
+      }
+
+      span.when {
       }
 
       p.response {
