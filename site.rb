@@ -67,7 +67,7 @@ get '/authed' do
   p @request_token
 
   begin
-    response = @access_token.request(:get, "http://api.twitter.com/1/users/lookup.format")
+    response = @access_token.get("http://api.twitter.com/1/users/lookup.format")
     return response.inspect
 
     user = JSON.parse(response)
