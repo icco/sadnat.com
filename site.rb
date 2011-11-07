@@ -59,7 +59,7 @@ post '/' do
   session["unfinished"] = nil
 
   # TODO: move to function
-  if params["auth"] == "anon" || params["auth"] == "twitter" && !session["user"].nil?
+  if params["auth"] == "anon" || (params["auth"] == "twitter" && !session["user"].nil?)
     entry = Entry.new
     entry.date = Time.now
     if params["auth"] == "anon"
@@ -69,7 +69,7 @@ post '/' do
     end
     entry.reason = params["reason"]
     entry.save
-  else if params["auth"] = "twitter" && session["user"].nil?
+  elsif params["auth"] = "twitter" && session["user"].nil?
     session["unfinished"] = params["reason"]
     redirect '/login'
   end
@@ -108,6 +108,7 @@ get '/authed' do
       end
       entry.reason = params["reason"]
       entry.save
+      session["unfinished"] = nil
     end
 
     redirect '/'
