@@ -54,10 +54,12 @@ div.update {
 }
 
 #footer {
-   font-family: "PT Serif", serif;
+   font-family: monospace;
    background-color: rgba(128, 128, 128, 0.15);
-   width: 400px;
+   width: 200px;
    margin: 0 auto;
+   text-align: center;
+   padding: 3px;
 }
 
 div.reasons {
