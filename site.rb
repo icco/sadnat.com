@@ -46,7 +46,7 @@ end
 
 get '/' do
   erb :index, :locals => {
-    "entries" => Entries.all
+    "entries" => Entry.all
   }
 end
 
