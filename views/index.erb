@@ -35,7 +35,7 @@
 
    <div class="reasons">
      <% entries.each do |e| %>
-       <div class="odd">
+       <div class="<%= entries.index(e).odd? ? "odd" : "even" %>">
          &quot;<%= h e.reason %>&quot;&mdash;
          <span class="when"><%= e.date.humanize %></span>
          <span class="by">via
