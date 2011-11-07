@@ -39,7 +39,7 @@
          &quot;<%= h e.reason %>&quot;&mdash;
          <span class="when"><%= e.date.humanize %></span>
          <span class="by">via
-           <% if e.username.nil? %>
+           <% if !e.username.nil? %>
              <a href="http://twitter.com/<%= e.username %>">@<%= e.username %></a>
            <% else %>
              Anonymous

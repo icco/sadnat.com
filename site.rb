@@ -126,7 +126,7 @@ end
 class Time
   def humanize
     if Time.now.strftime("%F") == self.strftime("%F")
-      Time.now.strftime("%i %P")
+      Time.now.strftime("%l:%M %P")
     elsif Time.now.year == self.year
       Time.now.strftime("%b %e")
     else
