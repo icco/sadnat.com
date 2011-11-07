@@ -8,7 +8,7 @@ task :db do
 
   DB = Sequel.connect(ENV['DATABASE_URL'] || "sqlite://data.db")
   DB.create_table! :entries do
-    primary_key :entry_id
+    primary_key :id
     String :reason
     String :username
     String :response

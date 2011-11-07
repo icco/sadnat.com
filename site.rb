@@ -55,6 +55,10 @@ get '/' do
   erb :index, :locals => { "entries" => Entry.reverse_order(:date).all }
 end
 
+get '/view/:id' do
+  erb :view, :locals => { "entry" => Entry.find(params["id"] }
+end
+
 post '/' do
   session["unfinished"] = nil
 
@@ -125,11 +129,11 @@ end
 class Time
   def humanize
     if Time.now.strftime("%F") == self.strftime("%F")
-      return Time.now.strftime("%l:%M %P")
+      return self.strftime("%l:%M %P")
     elsif Time.now.year == self.year
-      return Time.now.strftime("%b %e")
+      return self.strftime("%b %e")
     else
-      return Time.now.strftime("%b %e '%y")
+      return self.strftime("%b %e '%y")
     end
   end
 end

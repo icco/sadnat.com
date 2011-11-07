@@ -37,7 +37,7 @@
      <% entries.each do |e| %>
        <div class="<%= entries.index(e).odd? ? "odd" : "even" %>">
          &quot;<%= h e.reason %>&quot;&mdash;
-         <span class="when"><%= e.date.humanize %></span>
+         <span class="when"><a href="/view/<%= e.id %>"><%= e.date.humanize %></a></span>
          <span class="by">via
            <% if !e.username.nil? %>
              <a href="http://twitter.com/<%= e.username %>">@<%= e.username %></a>
@@ -52,15 +52,6 @@
          <% end %>
        </div>
      <% end %>
-
-      <div class="odd">
-         &quot;Brown Owl has too many customers.&quot;&mdash;
-         <span class="when">Nov 6</span>
-         <span class="by">via <a href="http://twitter.com/dmpatierno">@dmpatierno</a></span>
-         <p class="response">
-            &quot;In my defense, I'm an asshole.&quot; /Nat
-         </p>
-      </div>
    </div>
 
    <script type="text/javascript">
