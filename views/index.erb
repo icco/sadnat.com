@@ -34,6 +34,14 @@
    </div>
 
    <div class="reasons">
+     <% entries.each do |e| %>
+       <div class="odd">
+         &quot;<%= h e.reason %>&quot;&mdash;
+         <span class="when"><%= e.date %></span>
+         <span class="by">via <a href="http://twitter.com/<%= e.username %>">@<%= e.username %></a></span>
+       </div>
+     <% end %>
+
       <div class="odd">
          &quot;Brown Owl has too many customers.&quot;&mdash;
          <span class="when">Nov 6</span>
