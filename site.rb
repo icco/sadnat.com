@@ -46,9 +46,21 @@ end
 get '/authed' do
   begin
     p params
-    session["code"] = params[:code]
-    access_token = client.auth_code.get_token(params[:code])
-    user = JSON.parse(access_token.get('/user').body)
+    session["oauth"] = {
+      "token" => params["oauth_token"],
+      "verifier" => params["oauth_verifier"]
+    }
+
+    token_hash = {
+      :oauth_token => session["oauth"]["token"],
+      :oauth_token_secret => session["oauth"][
+    }
+    access_token = OAuth::AccessToken.from_hash(client, token_hash)
+    response = access_token.request(:get, "http://api.twitter.com/1/statuses/home_timeline.json")
+    p response
+    return response
+
+    user = JSON.parse(response)
 
     # Pull out the data we care about
     session['user'] = user["login"]
