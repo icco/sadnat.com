@@ -38,7 +38,7 @@ get '/style.css' do
 end
 
 get '/login' do
-  request_token = client.get_request_token
+  request_token = client.get_request_token(:oauth_callback => "http://#{request.host}/authed")
   url = request_token.authorize_url
 
   redirect url
