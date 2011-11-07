@@ -53,7 +53,7 @@ get '/authed' do
 
     token_hash = {
       :oauth_token => session["oauth"]["token"],
-      :oauth_token_secret => session["oauth"][
+      :oauth_token_secret => session["oauth"]["verifier"]
     }
     access_token = OAuth::AccessToken.from_hash(client, token_hash)
     response = access_token.request(:get, "http://api.twitter.com/1/statuses/home_timeline.json")
