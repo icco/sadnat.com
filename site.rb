@@ -52,14 +52,11 @@ before do
 end
 
 get '/' do
-  erb :index, :locals => { "entries" => Entry.reverse_order(:date) }
+  erb :index, :locals => { "entries" => Entry.reverse_order(:date).all }
 end
 
 post '/' do
   session["unfinished"] = nil
-
-  p params
-  p session
 
   # TODO: move to a function
   if params["auth"] == "anon" || (params["auth"] == "twitter" && !session["user"].nil?)
