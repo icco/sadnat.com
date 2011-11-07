@@ -1,6 +1,9 @@
 source :rubygems
 
-gem "sinatra"
-gem "less"
+gem "json"
+gem "sass"
+gem "oauth2", :git => "git://github.com/intridea/oauth2.git"
+gem "pg", :groups => [:production]
 gem "sequel"
-gem "sqlite3"
+gem "sinatra"
+gem "sqlite3", :groups => [:development]

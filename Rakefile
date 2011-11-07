@@ -9,8 +9,10 @@ task :db do
   DB = Sequel.connect(ENV['DATABASE_URL'] || "sqlite://data.db")
   DB.create_table! :entries do
     primary_key :entry_id
-    DateTime :create_date
-    DateTime :modify_date
+    String :reason
+    String :username
+    String :response
+    DateTime :date
   end
 
   puts "Database built."
