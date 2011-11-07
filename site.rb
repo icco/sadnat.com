@@ -67,7 +67,8 @@ post '/view/:id' do
   if session["user"] == "icco"
     entry = Entry.where(:id => params["id"]).first
     entry.response = params["response"]
-    entry.save
+    entry.show = params["show"]
+    entry.sav
   end
 
   redirect "/view/#{entry.id}"

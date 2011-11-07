@@ -13,6 +13,7 @@ task :db do
     String :username
     String :response
     DateTime :date
+    Boolean :show, :default => true
   end
 
   puts "Database built."
