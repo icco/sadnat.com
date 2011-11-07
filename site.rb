@@ -52,7 +52,7 @@ before do
 end
 
 get '/' do
-  erb :index, :locals => { "entries" => Entry.reverse_order(:date).all }
+  erb :index, :locals => { "entries" => Entry.filter(:show => true).reverse_order(:date).all }
 end
 
 get '/about' do
