@@ -56,10 +56,23 @@ get '/' do
 end
 
 post '/' do
-  entry = Entry.new
-  entry.date = Time.now
-  entry.username = session["user"]
-  entry.save
+  session["unfinished"] = nil
+
+  # TODO: move to function
+  if params["auth"] == "anon" || params["auth"] == "twitter" && !session["user"].nil?
+    entry = Entry.new
+    entry.date = Time.now
+    if params["auth"] == "anon"
+      entry.username = nil
+    else
+      entry.username = session["user"]
+    end
+    entry.reason = params["reason"]
+    entry.save
+  else if params["auth"] = "twitter" && session["user"].nil?
+    session["unfinished"] = params["reason"]
+    redirect '/login'
+  end
 
   redirect '/'
 end
@@ -78,12 +91,24 @@ get '/authed' do
 
   begin
     response = @access_token.get('/account/verify_credentials.json')
-    p response.body
 
     user = JSON.parse(response.body)
 
     # Pull out the data we care about
     session['user'] = user['screen_name']
+
+    # TODO: move to function
+    if !session["unfinished"].nil?
+      entry = Entry.new
+      entry.date = Time.now
+      if params["auth"] == "anon"
+        entry.username = nil
+      else
+        entry.username = session["user"]
+      end
+      entry.reason = params["reason"]
+      entry.save
+    end
 
     redirect '/'
     %(<p>Your OAuth access token: #{@access_token.inspect}</p><p>Your extended profile data:\n#{user.inspect}</p><p>Session:\n#{session}</p>)
