@@ -62,12 +62,8 @@ get '/login' do
 end
 
 get '/authed' do
-  p @acces_token
-  p @client
-  p @request_token
-
   begin
-    response = @access_token.get("http://api.twitter.com/1/users/lookup.format")
+    response = @request_token.access_token.get("http://api.twitter.com/1/users/lookup.format")
     return response.inspect
 
     user = JSON.parse(response)
