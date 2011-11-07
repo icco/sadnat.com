@@ -106,7 +106,7 @@ get '/authed' do
       else
         entry.username = session["user"]
       end
-      entry.reason = params["reason"]
+      entry.reason = session["unfinished"]
       entry.save
       session["unfinished"] = nil
     end
