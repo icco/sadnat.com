@@ -45,7 +45,9 @@ before do
 end
 
 get '/' do
-  erb :index, :locals => {}
+  erb :index, :locals => {
+    "entries" => Entries.all
+  }
 end
 
 post '/' do
@@ -73,7 +75,7 @@ get '/authed' do
     # Pull out the data we care about
     session['user'] = user['screen_name']
 
-    %(<p>Your OAuth access token: #{access_token.token}</p><p>Your extended profile data:\n#{user.inspect}</p>)
+    %(<p>Your OAuth access token: #{@access_token.inspect}</p><p>Your extended profile data:\n#{user.inspect}</p><p>Session:\n#{session}</p>)
   rescue OAuth::Error => e
     p e
     %(<p>Outdated ?code=#{params[:code]}:</p><p>#{$!}</p><p><a href="/login">Retry</a></p>)
