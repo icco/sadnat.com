@@ -24,6 +24,7 @@ end
 before do
   session["user"] = nil
   session[:oauth] ||= {}
+
   @consumer = OAuth::Consumer.new(CONS_KEY, CONS_SEC, { :site => 'http://twitter.com/' })
 
   # generate a request token for this user session if we haven't already
@@ -120,4 +121,16 @@ get '/authed' do
 end
 
 class Entry < Sequel::Model(:entries)
+end
+
+class Time
+  def humanize
+    if Time.now.strftime("%F") == self.strftime("%F")
+      Time.now.strftime("%l%P")
+    elsif Time.now.year == self.year
+      Time.now.strftime("%b %e")
+    else
+      Time.now.strftime("%b %e '%y")
+    end
+  end
 end
