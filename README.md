@@ -13,3 +13,9 @@ If you want to test or modify:
  * `bundle install`
  * `shotgun`
 
+## TODO
+
+ * Write better CSS for admin editorial entry
+ * Create text parser for response and posts
+   * Needs to autolink links and autotransform twitter handles
+ * Add Javascript for Twitter @Anywhere and form validation 
