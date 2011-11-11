@@ -12,12 +12,24 @@ configure do
   # Twiter Keys
   CONS_KEY = 'aPtehhMPyIGjjKnAngkkQ'
   CONS_SEC = ENV['TWITTER_SECRET']
+
+  # CSRF
+  use Rack::Session::Cookie, :secret => "marrypoppinshadalittlelamb"
+  use Rack::Csrf, :raise => true
 end
 
 # To help us not dump scary stuff.
 helpers do
   include Rack::Utils
   alias_method :h, :escape_html
+
+  def csrf_token
+    Rack::Csrf.csrf_token(env)
+  end
+
+  def csrf_tag
+    Rack::Csrf.csrf_tag(env)
+  end
 end
 
 # http://www.lmcalpin.com/post/1178799294/a-little-sinatra-oauth-ditty
