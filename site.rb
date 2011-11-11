@@ -6,7 +6,7 @@ configure do
   # Sessions baby!
   use Rack::Session::Cookie, :key => 'rack.session',
     :path => '/',
-    :expire_after => 2592000, # In seconds
+    :expire_after => 86400, # one day in seconds
     :secret => 'marrypoppinshadalittlelamb'
 
   # This is how we use heroku's database.
