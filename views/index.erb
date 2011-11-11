@@ -17,6 +17,7 @@
         <p class="intro">Nat is sad because...</p>
 
         <form action="/" method="post">
+          <%= csrf_tag %>
           <input class="reason" type="text" name="reason" maxlength="255" />
           <input class="submit" type="image" src="images/submit.png" alt="Submit" />
           <p class="auth">
