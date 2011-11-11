@@ -4,7 +4,10 @@
 
 configure do
   # Sessions baby!
-  set :sessions, true
+  use Rack::Session::Cookie, :key => 'rack.session',
+    :path => '/',
+    :expire_after => 2592000, # In seconds
+    :secret => 'marrypoppinshadalittlelamb'
 
   # This is how we use heroku's database.
   DB = Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://data.db')
@@ -12,30 +15,19 @@ configure do
   # Twiter Keys
   CONS_KEY = 'aPtehhMPyIGjjKnAngkkQ'
   CONS_SEC = ENV['TWITTER_SECRET']
-
-  # CSRF
-  use Rack::Csrf
 end
 
 # To help us not dump scary stuff.
 helpers do
   include Rack::Utils
   alias_method :h, :escape_html
-
-  def csrf_token
-    Rack::Csrf.csrf_token(env)
-  end
-
-  def csrf_tag
-    Rack::Csrf.csrf_tag(env)
-  end
 end
 
 # http://www.lmcalpin.com/post/1178799294/a-little-sinatra-oauth-ditty
 before do
   session[:oauth] ||= {}
 
-  @consumer = OAuth::Consumer.new(CONS_KEY, CONS_SEC, { :site => 'http://twitter.com/' })
+  @consumer = OAuth::Consumer.new(CONS_KEY, CONS_SEC, { :site => 'http://twitter.com' })
 
   # generate a request token for this user session if we haven't already
   request_token = session[:oauth][:request_token]
