@@ -20,9 +20,11 @@ end
 
 # Define helper methods for views
 helpers do
+
   # To help us not dump scary stuff.
-  include Rack::Utils
-  alias_method :h, :escape_html
+  def h text
+    Sanitize.clean(text).gsub( %r{http://[^\s<]+} ) { |url| "<a href='#{url}'>#{url}</a>" }
+  end
 end
 
 # Stuff to do before routing requests.
