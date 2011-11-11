@@ -6,9 +6,7 @@
 configure do
   # Sessions baby!
   use Rack::Session::Cookie, :key => 'rack.session',
-    :path => '/',
-    :expire_after => 86400, # one day in seconds
-    :secret => 'marrypoppinshadalittlelamb'
+    :expire_after => 86400 # one day in seconds
 
   # This is how we use heroku's database.
   DB = Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://data.db')
