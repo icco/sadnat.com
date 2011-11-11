@@ -14,8 +14,7 @@ configure do
   CONS_SEC = ENV['TWITTER_SECRET']
 
   # CSRF
-  use Rack::Session::Cookie, :secret => "marrypoppinshadalittlelamb"
-  use Rack::Csrf, :raise => true
+  use Rack::Csrf
 end
 
 # To help us not dump scary stuff.
