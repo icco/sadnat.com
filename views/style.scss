@@ -7,6 +7,15 @@ a img {
    border: none;
 }
 
+a, a:visited {
+  color: #339;
+  text-decoration: none;
+}
+
+a:hover, a:active {
+  color: #36c;
+}
+
 div.top, div.reasons {
    margin: 20px auto;
    width: 960px;
@@ -86,13 +95,6 @@ div.reasons {
 
       span {
          color: #333;
-         a, a:visited {
-            color: #339;
-            text-decoration: none;
-         }
-         a:hover, a:active {
-            color: #36c;
-         }
       }
 
       span.by {

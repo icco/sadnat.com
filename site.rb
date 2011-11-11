@@ -21,7 +21,7 @@ end
 # Define helper methods for views
 helpers do
 
-  # To help us not dump scary stuff.
+  # To help us not dump scary stuff, but still autolink links.
   def h text
     Sanitize.clean(text).gsub( %r{http://[^\s<]+} ) { |url| "<a href='#{url}'>#{url}</a>" }
   end
