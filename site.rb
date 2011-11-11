@@ -2,6 +2,7 @@
 # Sad Nat .com is now dynamic bitches.
 # @author Nat Welch - https://github.com/icco
 
+# Settings for the app
 configure do
   # Sessions baby!
   use Rack::Session::Cookie, :key => 'rack.session',
@@ -17,12 +18,16 @@ configure do
   CONS_SEC = ENV['TWITTER_SECRET']
 end
 
-# To help us not dump scary stuff.
+# Define helper methods for views
 helpers do
+  # To help us not dump scary stuff.
   include Rack::Utils
   alias_method :h, :escape_html
 end
 
+# Stuff to do before routing requests.
+#
+# Oauth code based on:
 # http://www.lmcalpin.com/post/1178799294/a-little-sinatra-oauth-ditty
 before do
   session[:oauth] ||= {}
@@ -54,29 +59,12 @@ before do
   end
 end
 
+# Main index, lists all entries
 get '/' do
   erb :index, :locals => { "entries" => Entry.filter(:show => true).reverse_order(:date).all }
 end
 
-get '/about' do
-  erb :about
-end
-
-get '/view/:id' do
-  erb :view, :locals => { "entry" => Entry.where(:id => params["id"]).first }
-end
-
-post '/view/:id' do
-  if session["user"] == "icco"
-    entry = Entry.where(:id => params["id"]).first
-    entry.response = params["response"]
-    entry.show = params["show"]
-    entry.save
-  end
-
-  redirect "/view/#{entry.id}"
-end
-
+# Posted to to create new entry
 post '/' do
   session["unfinished"] = nil
 
@@ -99,15 +87,42 @@ post '/' do
   redirect '/'
 end
 
+# About page.
+get '/about' do
+  erb :about
+end
+
+# Individual entry view
+get '/view/:id' do
+  erb :view, :locals => { "entry" => Entry.where(:id => params["id"]).first }
+end
+
+# Posted to only by nat for editorial content
+post '/view/:id' do
+
+  # This can't be secure...
+  if session["user"] == "icco"
+    entry = Entry.where(:id => params["id"]).first
+    entry.response = params["response"]
+    entry.show = params["show"]
+    entry.save
+  end
+
+  redirect "/view/#{entry.id}"
+end
+
+# Fancy CSS formatting
 get '/style.css' do
   content_type 'text/css', :charset => 'utf-8'
   scss :style, :style => :compressed
 end
 
+# Force OAuth Login
 get '/login' do
   redirect @request_token.authorize_url
 end
 
+# Twitter Callback
 get '/authed' do
   @access_token = @request_token.get_access_token
 
@@ -141,9 +156,11 @@ get '/authed' do
   end
 end
 
+# ORM Attachment
 class Entry < Sequel::Model(:entries)
 end
 
+# Nice time printing
 class Time
   def humanize
     if Time.now.strftime("%F") == self.strftime("%F")
