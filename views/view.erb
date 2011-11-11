@@ -29,9 +29,9 @@
         <% end %>
         <% if session["user"] == "icco" %>
           <form action="/view/<%= entry.id %>" method="post">
-            &quot;<input class="response" value="<%= entry.response %>" type="text" name="response" maxlength="255" />&quot;
+            <input class="response" value="<%= entry.response %>" type="text" name="response" maxlength="255" />
             <span class="show">
-              <label for="show">Show?</label>
+              <label for="show">show?</label>
               <input id="show" name="show" type="checkbox" checked />
             </span>
             <input type="submit" />
