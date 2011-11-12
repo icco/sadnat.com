@@ -1,3 +1,4 @@
 *swp
 *.db
 .sass-cache
+.bundle
