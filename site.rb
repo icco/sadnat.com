@@ -5,8 +5,7 @@
 # Settings for the app
 configure do
   # Sessions baby!
-  use Rack::Session::Cookie, :key => 'rack.session',
-    :expire_after => 86400 # one day in seconds
+  set :sessions, true
 
   # This is how we use heroku's database.
   DB = Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://data.db')
@@ -32,30 +31,32 @@ end
 before do
   session[:oauth] ||= {}
 
-  @consumer = OAuth::Consumer.new(CONS_KEY, CONS_SEC, { :site => 'http://twitter.com' })
+  if request.host != 'localhost'
+    @consumer = OAuth::Consumer.new(CONS_KEY, CONS_SEC, { :site => 'http://twitter.com' })
 
-  # generate a request token for this user session if we haven't already
-  request_token = session[:oauth][:request_token]
-  request_token_secret = session[:oauth][:request_token_secret]
-  if request_token.nil? || request_token_secret.nil?
-    # new user? create a request token and stick it in their session
-    @request_token = @consumer.get_request_token(:oauth_callback => "http://#{request.host}/authed")
-    session[:oauth][:request_token] = @request_token.token
-    session[:oauth][:request_token_secret] = @request_token.secret
-  else
-    # we made this user's request token before, so recreate the object
-    @request_token = OAuth::RequestToken.new(@consumer, request_token, request_token_secret)
-  end
+    # generate a request token for this user session if we haven't already
+    request_token = session[:oauth][:request_token]
+    request_token_secret = session[:oauth][:request_token_secret]
+    if request_token.nil? || request_token_secret.nil?
+      # new user? create a request token and stick it in their session
+      @request_token = @consumer.get_request_token(:oauth_callback => "http://#{request.host}/authed")
+      session[:oauth][:request_token] = @request_token.token
+      session[:oauth][:request_token_secret] = @request_token.secret
+    else
+      # we made this user's request token before, so recreate the object
+      @request_token = OAuth::RequestToken.new(@consumer, request_token, request_token_secret)
+    end
 
-  # this is what we came here for...
-  access_token = session[:oauth][:access_token]
-  access_token_secret = session[:oauth][:access_token_secret]
-  unless access_token.nil? || access_token_secret.nil?
-    # the ultimate goal is to get here, where we can create our Twitter @client object
-    @access_token = OAuth::AccessToken.new(@consumer, access_token, access_token_secret)
-    oauth = Twitter::OAuth.new(CONS_KEY, CONS_SEC)
-    oauth.authorize_from_access(@access_token.token, @access_token.secret)
-    @client = Twitter::Base.new(oauth)
+    # this is what we came here for...
+    access_token = session[:oauth][:access_token]
+    access_token_secret = session[:oauth][:access_token_secret]
+    unless access_token.nil? || access_token_secret.nil?
+      # the ultimate goal is to get here, where we can create our Twitter @client object
+      @access_token = OAuth::AccessToken.new(@consumer, access_token, access_token_secret)
+      oauth = Twitter::OAuth.new(CONS_KEY, CONS_SEC)
+      oauth.authorize_from_access(@access_token.token, @access_token.secret)
+      @client = Twitter::Base.new(oauth)
+    end
   end
 end
 
@@ -119,7 +120,11 @@ end
 
 # Force OAuth Login
 get '/login' do
-  redirect @request_token.authorize_url
+  if @request_token.nil?
+    redirect '/'
+  else
+    redirect @request_token.authorize_url
+  end
 end
 
 # Twitter Callback
