@@ -25,7 +25,13 @@
           </span>
           <span>
             <input id="twitter" name="auth" type="radio" value="twitter" checked />
-            <label for="twitter">login with twitter</label>
+            <label for="twitter">
+              <% if session["user"] %>
+                as @<%= session["user"] %>
+              <% else %>
+                login with twitter
+              <% end %>
+            </label>
           </span>
           </p>
         </form>
