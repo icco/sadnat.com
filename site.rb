@@ -161,6 +161,11 @@ get '/authed' do
   end
 end
 
+# Redirect for Natform
+get '/game' do
+  redirect "https://github.com/icco/platform"
+end
+
 # ORM Attachment
 class Entry < Sequel::Model(:entries)
 end
