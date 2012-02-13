@@ -1,0 +1,5 @@
+rake clean       # Remove any temporary products.
+rake clobber     # Remove any generated file.
+rake db:dump     # Dumps the database
+rake db:erase    # Delete the database
+rake db:migrate  # Bring database schema up to par.
