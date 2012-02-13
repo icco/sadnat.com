@@ -2,7 +2,6 @@ source :rubygems
 
 gem "json"
 gem "multi_json"
-gem "oauth"
 gem "omniauth", :git => "https://github.com/intridea/omniauth.git"
 gem "omniauth-twitter", :require => "omniauth/twitter"  # https://github.com/arunagw/omniauth-twitter
 gem "pg", :groups => [:production]

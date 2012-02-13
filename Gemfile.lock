@@ -43,7 +43,6 @@ PLATFORMS
 DEPENDENCIES
   json
   multi_json
-  oauth
   omniauth!
   omniauth-twitter
   pg
