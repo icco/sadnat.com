@@ -96,10 +96,23 @@ end
 # Twitter Callback
 get '/auth/twitter/callback' do
   auth = request.env['omniauth.auth']
-  session['username'] = auth["info"].nickname
-  session.inspect
+  session['user'] = auth["info"].nickname
 
-  #redirect '/'
+  # TODO: move to a function
+  if !session["unfinished"].nil?
+    entry = Entry.new
+    entry.date = Time.now
+    if params["auth"] == "anon"
+      entry.username = nil
+    else
+      entry.username = session["user"]
+    end
+    entry.reason = session["unfinished"]
+    entry.save
+    session["unfinished"] = nil
+  end
+
+  redirect '/'
 end
 
 # Redirect for Natform
