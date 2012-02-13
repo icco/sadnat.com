@@ -2,8 +2,8 @@ source :rubygems
 
 gem "json"
 gem "multi_json"
-gem "omniauth", :git => "https://github.com/intridea/omniauth.git"
 gem "omniauth-twitter", :require => "omniauth/twitter"  # https://github.com/arunagw/omniauth-twitter
+gem 'omniauth-facebook' # https://github.com/mkdynamic/omniauth-facebook
 gem "pg", :groups => [:production]
 gem "rack_csrf", :require => "rack/csrf"
 gem "rake"

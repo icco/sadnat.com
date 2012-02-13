@@ -2,8 +2,6 @@
 # Sad Nat .com is now dynamic bitches.
 # @author Nat Welch - https://github.com/icco
 
-require 'omniauth/twitter'
-
 # Settings for the app
 configure do
   # Sessions baby!
