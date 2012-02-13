@@ -97,7 +97,9 @@ end
 get '/auth/twitter/callback' do
   auth = request.env['omniauth.auth']
   session['username'] = auth["info"].nickname
-  redirect '/'
+  session.inspect
+
+  #redirect '/'
 end
 
 # Redirect for Natform
