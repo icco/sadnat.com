@@ -32,7 +32,7 @@
             <input class="response" value="<%= entry.response %>" type="text" name="response" maxlength="255" />
             <span class="show">
               <label for="show">show?</label>
-              <input id="show" name="show" type="checkbox" checked />
+              <input id="show" name="show" type="checkbox" <%= "checked" if entry.show %> />
             </span>
             <input type="submit" />
           </form>
