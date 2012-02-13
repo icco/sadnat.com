@@ -41,4 +41,9 @@ namespace :db do
     puts "Commits Schema"
     p DB.schema :commits
   end
+
+  desc "Pulls database from Heroku."
+  task :pull do
+    `heroku db:pull sqlite://db/data.db --confirm sadnat`
+  end
 end
