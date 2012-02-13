@@ -11,6 +11,7 @@ GEM
   specs:
     hashie (1.2.0)
     json (1.6.5)
+    multi_json (1.0.4)
     nokogiri (1.5.0)
     oauth (0.4.5)
     omniauth-oauth (1.0.0)
@@ -41,6 +42,7 @@ PLATFORMS
 
 DEPENDENCIES
   json
+  multi_json
   oauth
   omniauth!
   omniauth-twitter

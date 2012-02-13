@@ -6,9 +6,10 @@
 configure do
   # Sessions baby!
   set :sessions, true
+  set :session_secret, 'f1702909fef2c47480d3b72d40d3760998dc7f679c0f7611aaff89f85e766211'
 
   # This is how we use heroku's database.
-  DB = Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://data.db')
+  DB = Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://db/data.db')
 
   # Twiter Keys
   CONS_KEY = 'aPtehhMPyIGjjKnAngkkQ'
@@ -25,39 +26,8 @@ helpers do
 end
 
 # Stuff to do before routing requests.
-#
-# Oauth code based on:
-# http://www.lmcalpin.com/post/1178799294/a-little-sinatra-oauth-ditty
-before do
-  session[:oauth] ||= {}
-
-  if request.host != 'localhost'
-    @consumer = OAuth::Consumer.new(CONS_KEY, CONS_SEC, { :site => 'http://twitter.com' })
-
-    # generate a request token for this user session if we haven't already
-    request_token = session[:oauth][:request_token]
-    request_token_secret = session[:oauth][:request_token_secret]
-    if request_token.nil? || request_token_secret.nil?
-      # new user? create a request token and stick it in their session
-      @request_token = @consumer.get_request_token(:oauth_callback => "http://#{request.host}/authed")
-      session[:oauth][:request_token] = @request_token.token
-      session[:oauth][:request_token_secret] = @request_token.secret
-    else
-      # we made this user's request token before, so recreate the object
-      @request_token = OAuth::RequestToken.new(@consumer, request_token, request_token_secret)
-    end
-
-    # this is what we came here for...
-    access_token = session[:oauth][:access_token]
-    access_token_secret = session[:oauth][:access_token_secret]
-    unless access_token.nil? || access_token_secret.nil?
-      # the ultimate goal is to get here, where we can create our Twitter @client object
-      @access_token = OAuth::AccessToken.new(@consumer, access_token, access_token_secret)
-      oauth = Twitter::OAuth.new(CONS_KEY, CONS_SEC)
-      oauth.authorize_from_access(@access_token.token, @access_token.secret)
-      @client = Twitter::Base.new(oauth)
-    end
-  end
+use OmniAuth::Builder do
+  provider :twitter,  CONS_KEY, CONS_SEC
 end
 
 # Main index, lists all entries
@@ -120,45 +90,14 @@ end
 
 # Force OAuth Login
 get '/login' do
-  if @request_token.nil?
-    redirect '/'
-  else
-    redirect @request_token.authorize_url
-  end
+  redirect '/auth/twitter'
 end
 
 # Twitter Callback
-get '/authed' do
-  @access_token = @request_token.get_access_token
-
-  begin
-    response = @access_token.get('/account/verify_credentials.json')
-
-    user = JSON.parse(response.body)
-
-    # Pull out the data we care about
-    session['user'] = user['screen_name']
-
-    # TODO: move to a function
-    if !session["unfinished"].nil?
-      entry = Entry.new
-      entry.date = Time.now
-      if params["auth"] == "anon"
-        entry.username = nil
-      else
-        entry.username = session["user"]
-      end
-      entry.reason = session["unfinished"]
-      entry.save
-      session["unfinished"] = nil
-    end
-
-    redirect '/'
-    %(<p>Your OAuth access token: #{@access_token.inspect}</p><p>Your extended profile data:\n#{user.inspect}</p><p>Session:\n#{session}</p>)
-  rescue OAuth::Error => e
-    p e
-    %(<p>Outdated ?code=#{params[:code]}:</p><p>#{$!}</p><p><a href="/login">Retry</a></p>)
-  end
+get '/auth/twitter/callback' do
+  auth = request.env['omniauth.auth']
+  session['username'] = auth["info"].nickname
+  redirect '/'
 end
 
 # Redirect for Natform
