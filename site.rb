@@ -8,6 +8,9 @@ configure do
   set :sessions, true
   set :session_secret, 'f1702909fef2c47480d3b72d40d3760998dc7f679c0f7611aaff89f85e766211'
 
+  # Hmm...
+  set :protection, except: :session_hijacking
+
   # This is how we use heroku's database.
   DB = Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://db/data.db')
 
