@@ -9,13 +9,13 @@ Essentially a site for dealing with how people percieve Nat's bitching. Or as Da
 
 If you want to test or modify:
 
- * `gem install shotgun bundler heroku`
- * `bundle install`
- * `shotgun`
+ * Install the basic dev dependencies: `gem install shotgun bundler heroku`
+ * Install all the other gems: `bundle install`
+ * Run a local server: `shotgun`
 
 ## TODO
 
  * Write better CSS for admin editorial entry
- * Create text parser for response and posts
-   * Needs to autolink links and autotransform twitter handles
  * Add Javascript for Twitter @Anywhere and form validation 
+ * figure out the bugs in rack-protection and make sure security is OK.
+ * Fix mobile CSS
