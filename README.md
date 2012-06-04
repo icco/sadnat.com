@@ -15,7 +15,4 @@ If you want to test or modify:
 
 ## TODO
 
- * Write better CSS for admin editorial entry
- * Add Javascript for Twitter @Anywhere and form validation 
- * figure out the bugs in rack-protection and make sure security is OK.
- * Fix mobile CSS
+ * Fix [all of the issues!](https://github.com/icco/sadnat.com/issues)
