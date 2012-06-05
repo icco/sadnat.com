@@ -13,3 +13,8 @@ gem "sequel"
 gem "sinatra"
 gem "sqlite3", :groups => [:development]
 gem 'rack', "~> 1.4.1"
+
+# Monitoring
+group :production do
+  gem 'newrelic_rpm'
+end
