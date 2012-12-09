@@ -52,19 +52,21 @@ post '/' do
   session["unfinished"] = nil
 
   # TODO: move to a function
-  if params["auth"] == "anon" || (params["auth"] == "twitter" && !session["user"].nil?)
-    entry = Entry.new
-    entry.date = Time.now
-    if params["auth"] == "anon"
-      entry.username = nil
-    else
-      entry.username = session["user"]
+  if params["reason"]
+    if params["auth"] == "anon" || (params["auth"] == "twitter" && !session["user"].nil?)
+      entry = Entry.new
+      entry.date = Time.now
+      if params["auth"] == "anon"
+        entry.username = nil
+      else
+        entry.username = session["user"]
+      end
+      entry.reason = params["reason"]
+      entry.save
+    elsif params["auth"] = "twitter" && session["user"].nil?
+      session["unfinished"] = params["reason"]
+      redirect '/login'
     end
-    entry.reason = params["reason"]
-    entry.save
-  elsif params["auth"] = "twitter" && session["user"].nil?
-    session["unfinished"] = params["reason"]
-    redirect '/login'
   end
 
   redirect '/'
@@ -123,6 +125,15 @@ get '/auth/twitter/callback' do
     entry.save
     session["unfinished"] = nil
   end
+
+  redirect '/'
+end
+
+# url hit when auth fails.
+# /auth/failure?message=invalid_credentials&origin=http%3A%2F%2Fsadnat.com%2F&strategy=twitter
+get '/auth/failure' do
+  session['user'] = nil
+  puts "Failed auth: #{params.inspect}"
 
   redirect '/'
 end
