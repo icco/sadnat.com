@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    faraday (0.8.5)
+    faraday (0.8.6)
       multipart-post (~> 1.1)
     hashie (1.2.0)
     httpauth (0.2.0)
@@ -9,11 +9,11 @@ GEM
     jwt (0.1.5)
       multi_json (>= 1.0)
     multi_json (1.6.1)
-    multipart-post (1.1.5)
-    newrelic_rpm (3.5.6.55)
+    multipart-post (1.2.0)
+    newrelic_rpm (3.5.8.72)
     nokogiri (1.5.6)
     oauth (0.4.7)
-    oauth2 (0.8.0)
+    oauth2 (0.8.1)
       faraday (~> 0.8)
       httpauth (~> 0.1)
       jwt (~> 0.1.4)
@@ -35,21 +35,21 @@ GEM
       omniauth-oauth (~> 1.0)
     pg (0.14.1)
     rack (1.5.2)
-    rack-protection (1.3.2)
+    rack-protection (1.4.0)
       rack
     rack_csrf (2.4.0)
       rack (>= 0.9)
     rake (10.0.3)
     sanitize (2.0.3)
       nokogiri (>= 1.4.4, < 1.6)
-    sass (3.2.5)
-    sequel (3.44.0)
-    sinatra (1.3.4)
+    sass (3.2.6)
+    sequel (3.45.0)
+    sinatra (1.3.5)
       rack (~> 1.4)
       rack-protection (~> 1.3)
       tilt (~> 1.3, >= 1.3.3)
     sqlite3 (1.3.7)
-    tilt (1.3.3)
+    tilt (1.3.4)
 
 PLATFORMS
   ruby
