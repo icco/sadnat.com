@@ -8,7 +8,7 @@ GEM
     json (1.7.7)
     jwt (0.1.8)
       multi_json (>= 1.5)
-    multi_json (1.7.2)
+    multi_json (1.7.3)
     multipart-post (1.2.0)
     newrelic_rpm (3.6.1.88)
     nokogiri (1.5.9)
