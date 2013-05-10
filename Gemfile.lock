@@ -10,7 +10,7 @@ GEM
       multi_json (>= 1.5)
     multi_json (1.7.3)
     multipart-post (1.2.0)
-    newrelic_rpm (3.6.1.88)
+    newrelic_rpm (3.6.2.96)
     nokogiri (1.5.9)
     oauth (0.4.7)
     oauth2 (0.8.1)
@@ -49,7 +49,7 @@ GEM
       rack-protection (~> 1.4)
       tilt (~> 1.3, >= 1.3.4)
     sqlite3 (1.3.7)
-    tilt (1.4.0)
+    tilt (1.4.1)
 
 PLATFORMS
   ruby
