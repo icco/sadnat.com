@@ -6,15 +6,12 @@ gem "omniauth-facebook" # https://github.com/mkdynamic/omniauth-facebook
 gem "omniauth-twitter" # https://github.com/arunagw/omniauth-twitter
 gem "pg", :groups => [:production]
 gem "rack"
-gem "rack_csrf", :require => "rack/csrf"
+gem "rack-protection", :require => "rack/protection"
 gem "rake"
 gem "sanitize"
 gem "sass"
 gem "sequel"
+gem "shotgun", :groups => [:development]
 gem "sinatra"
 gem "sqlite3", :groups => [:development]
-
-# Monitoring
-group :production do
-  gem "newrelic_rpm"
-end
+gem "thin"
