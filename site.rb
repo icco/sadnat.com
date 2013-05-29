@@ -50,6 +50,10 @@ end
 post '/' do
   session["unfinished"] = nil
 
+  if params['authenticity_token'] != session['csrf']
+    logger.debug "#{params['authenticity_token']} != #{session['csrf']}"
+  end
+
   # TODO: move to a function
   if params["reason"]
     if params["auth"] == "anon" || (params["auth"] == "twitter" && !session["user"].nil?)
