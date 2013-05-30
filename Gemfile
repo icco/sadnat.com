@@ -1,5 +1,6 @@
 source "https://rubygems.org"
 
+gem "heroku"
 gem "json"
 gem "multi_json"
 gem "omniauth-facebook" # https://github.com/mkdynamic/omniauth-facebook
@@ -14,4 +15,5 @@ gem "sequel"
 gem "shotgun", :groups => [:development]
 gem "sinatra"
 gem "sqlite3", :groups => [:development]
+gem "taps"
 gem "thin"
