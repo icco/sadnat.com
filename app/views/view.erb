@@ -1,38 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>sad nat because <%= h entry.reason %></title>
+    <title>sad nat because <%= h @entry.reason %></title>
     <meta charset="utf-8">
     <link href="/css/style.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
     <div class="reasons">
       <div class="odd">
-        <a href="/">Nat is sad</a> because &quot;<%= h entry.reason %>&quot;&mdash;
-        <span class="when"><a href="/view/<%= entry.id %>"><%= entry.date.humanize %></a></span>
+        <a href="/">Nat is sad</a> because &quot;<%= h @entry.reason %>&quot;&mdash;
+        <span class="when"><a href="/view/<%= @entry.id %>"><%= @entry.date.humanize %></a></span>
         <span class="by">via
-          <% if !entry.username.nil? %>
-            <a href="http://twitter.com/<%= entry.username %>">@<%= entry.username %></a>
+          <% if !@entry.username.nil? %>
+            <a href="http://twitter.com/<%= @entry.username %>">@<%= @entry.username %></a>
           <% else %>
             Anonymous
           <% end %>
         </span>
-        <% if !entry.show %>
+        <% if !@entry.show %>
           <span class="hidden">
             (hidden)
           </span>
         <% end %>
-        <% if !entry.response.nil? && !entry.response.empty? %>
+        <% if !@entry.response.nil? && !@entry.response.empty? %>
           <p class="response">
-          &quot;<%= h entry.response %>&quot; /Nat
+          &quot;<%= h @entry.response %>&quot; /Nat
           </p>
         <% end %>
         <% if session["user"] == "icco" %>
-          <form action="/view/<%= entry.id %>" method="post">
-            <input class="response" value="<%= entry.response %>" type="text" name="response" maxlength="255" />
+          <form action="/view/<%= @entry.id %>" method="post">
+            <input class="response" value="<%= @entry.response %>" type="text" name="response" maxlength="255" />
             <span class="show">
               <label for="show">show?</label>
-              <input id="show" name="show" type="checkbox" <%= "checked" if entry.show %> />
+              <input id="show" name="show" type="checkbox" <%= "checked" if @entry.show %> />
             </span>
             <input type="submit" />
           </form>

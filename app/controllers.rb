@@ -40,15 +40,22 @@ Sadnat::App.controllers  do
 
   # Individual entry view
   get '/view/:id' do
-    erb :view, :locals => { "entry" => Entry.where(:id => params["id"]).first }
+    @entry = Entry.where(:id => params[:id]).first
+
+    if not @entry
+      404
+    else
+      render :view
+    end
   end
 
   # Posted to only by nat for editorial content
   post '/view/:id' do
+    p params
 
     # This can't be secure...
     if session["user"] == "icco"
-      entry = Entry.where(:id => params["id"]).first
+      entry = Entry.where(:id => params[:id]).first
       entry.response = params["response"]
       entry.show = params["show"]
       entry.save
