@@ -16,6 +16,7 @@
 
         <form action="/" method="post">
           <input name="authenticity_token" value="<%= session[:csrf] %>" type="hidden" />
+
           <input class="reason" type="text" name="reason" maxlength="255" />
           <input class="submit" type="image" src="images/submit.png" alt="Submit" />
           <p class="auth">
