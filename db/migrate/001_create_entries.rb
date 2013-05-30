@@ -1,12 +1,11 @@
-class CreateEntries < ActiveRecord::Migration
-  def self.up
-    create_table :entries do |t|
-      t.text :text
-      t.timestamps
+Sequel.migration do
+  change do
+    create_table :entries do
+      primary_key :id
+      String :reason
+      String :username
+      String :response
+      DateTime :date
     end
-  end
-
-  def self.down
-    drop_table :entries
   end
 end
