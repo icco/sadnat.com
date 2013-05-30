@@ -1,4 +1,5 @@
 !vendor/gems/cache/
+.rake_t_cache
 *.db
 *swp
 .DS_Store
@@ -6,7 +7,6 @@
 .sass-cache
 .sass-cache/*
 bin/*
-db/*.db
 log/**/*
 tmp/**/*
 vendor/gems/*
