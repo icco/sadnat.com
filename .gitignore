@@ -1,8 +1,12 @@
+!vendor/gems/cache/
+*.db
+*swp
 .DS_Store
+.bundle
+.sass-cache
+.sass-cache/*
+bin/*
+db/*.db
 log/**/*
 tmp/**/*
-bin/*
 vendor/gems/*
-!vendor/gems/cache/
-.sass-cache/*
-db/*.db
