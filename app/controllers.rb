@@ -1,7 +1,7 @@
 Sadnat::App.controllers  do
   # Main index, lists all entries
   get '/' do
-    erb :index, :locals => { "entries" => Entry.filter(:show => true).reverse_order(:date).all }
+    erb :index, :locals => { "entries" => Entry.where(:show => true).order("date desc").all }
   end
 
   # Posted to to create new entry
