@@ -14,11 +14,10 @@
       <div class="update">
         <p class="intro">Nat is sad because...</p>
 
-        <form action="/" method="post">
-          <input name="authenticity_token" value="<%= session[:csrf] %>" type="hidden" />
-
+        <% form_tag '/', :method => :post do %>
           <input class="reason" type="text" name="reason" maxlength="255" />
           <input class="submit" type="image" src="images/submit.png" alt="Submit" />
+
           <p class="auth">
           <span>
             <input id="anon" name="auth" type="radio" value="anon" />
@@ -35,7 +34,7 @@
             </label>
           </span>
           </p>
-        </form>
+        <% end %>
       </div>
     </div>
 
