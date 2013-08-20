@@ -126,6 +126,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (~> 3.0)
+  bundler
   erubis (~> 2.7.0)
   json
   minitest

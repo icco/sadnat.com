@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 # Project requirements
+gem 'bundler'
 gem 'activerecord', '~> 3.0', :require => 'active_record'
 gem 'erubis', '~> 2.7.0'
 gem 'json'
