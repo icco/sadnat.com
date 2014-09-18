@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.1.2'
+
 # Project requirements
 gem 'bundler'
 gem 'activerecord', '~> 3.0', :require => 'active_record'
