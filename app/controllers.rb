@@ -38,6 +38,10 @@ Sadnat::App.controllers  do
     erb :about
   end
 
+  get '/fail' do
+    erb :fail
+  end
+
   # Individual entry view
   get '/view/:id' do
     @entry = Entry.where(:id => params[:id]).first
