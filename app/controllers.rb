@@ -1,7 +1,8 @@
 Sadnat::App.controllers  do
   # Main index, lists all entries
   get '/' do
-    erb :index, :locals => { "entries" => Entry.where(:show => true).order("date desc").all }
+    @entries = Entry.where(:show => true).order("date desc").all
+    render :index
   end
 
   # Posted to to create new entry
@@ -35,11 +36,11 @@ Sadnat::App.controllers  do
 
   # About page.
   get '/about' do
-    erb :about
+    render :about
   end
 
   get '/fail' do
-    erb :fail
+    render :fail
   end
 
   # Individual entry view
