@@ -37,6 +37,7 @@ GEM
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    newrelic_rpm (3.9.9.275)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
     nokogumbo (1.2.0)
@@ -143,6 +144,7 @@ DEPENDENCIES
   json
   minitest
   multi_json
+  newrelic_rpm
   omniauth-facebook
   omniauth-twitter
   padrino (>= 0.11)
