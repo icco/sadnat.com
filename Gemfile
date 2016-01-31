@@ -9,7 +9,6 @@ gem 'erubis', '~> 2.7.0'
 gem 'json'
 gem 'minitest', :require => 'minitest/autorun', :group => 'test'
 gem 'multi_json'
-gem 'newrelic_rpm'
 gem 'omniauth-facebook' # https://github.com/mkdynamic/omniauth-facebook
 gem 'omniauth-twitter' # https://github.com/arunagw/omniauth-twitter
 gem 'padrino', '>= 0.11'
