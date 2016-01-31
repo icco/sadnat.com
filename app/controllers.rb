@@ -36,6 +36,7 @@ Sadnat::App.controllers  do
 
   # About page.
   get '/about' do
+    @total_count = Entry.where(:show => true).order("date desc").all.count
     render :about
   end
 
