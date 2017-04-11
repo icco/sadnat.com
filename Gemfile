@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.3.0'
+ruby '2.4.0'
 
 # Project requirements
 gem 'activerecord', '~> 3.0', :require => 'active_record'
@@ -11,7 +11,7 @@ gem 'minitest', :require => 'minitest/autorun', :group => 'test'
 gem 'multi_json'
 gem 'omniauth-facebook' # https://github.com/mkdynamic/omniauth-facebook
 gem 'omniauth-twitter' # https://github.com/arunagw/omniauth-twitter
-gem 'padrino', '>= 0.11'
+gem 'padrino', '~> 0.13.0'
 gem 'pg'
 gem 'rack-protection', :require => 'rack/protection'
 gem 'rack-test', :require => 'rack/test', :group => 'test'
