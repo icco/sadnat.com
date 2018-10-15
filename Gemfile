@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.4.0'
+ruby '2.5.1'
 
 # Project requirements
 gem 'activerecord', '~> 3.0', :require => 'active_record'
@@ -9,7 +9,6 @@ gem 'erubis', '~> 2.7.0'
 gem 'json'
 gem 'minitest', :require => 'minitest/autorun', :group => 'test'
 gem 'multi_json'
-gem 'omniauth-facebook' # https://github.com/mkdynamic/omniauth-facebook
 gem 'omniauth-twitter' # https://github.com/arunagw/omniauth-twitter
 gem 'padrino', '~> 0.13.0'
 gem 'pg'
