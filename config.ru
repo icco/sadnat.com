@@ -1,6 +1,14 @@
 #!/usr/bin/env rackup
 # encoding: utf-8
 
-require File.expand_path("../config/boot.rb", __FILE__)
+RACK_ENV = ENV['RACK_ENV'] ||= 'development'  unless defined?(RACK_ENV)
 
-run Padrino.application
+# Load our dependencies
+require 'rubygems' unless defined?(Gem)
+require 'bundler/setup'
+Bundler.require(:default, RACK_ENV)
+
+require File.expand_path("../config/database.rb", __FILE__)
+require File.expand_path("../app/app.rb", __FILE__)
+
+run Sadnat::App.app

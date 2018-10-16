@@ -4,6 +4,13 @@ module Sadnat
 
     enable :sessions
     enable :logging
+    set :session_secret, ENV['SESSION_SECRET'] || '9asdjj66eeb73b629b5cc'
+    set :protection, true
+    set :protect_from_csrf, true
+
+    if not ENV['SESSION_SECRET']
+      logger.warn "SESSION SECRET IS NOT SECURE."
+    end
 
     # Twiter Keys
     CONS_KEY = 'aPtehhMPyIGjjKnAngkkQ'
