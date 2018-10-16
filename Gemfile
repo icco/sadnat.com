@@ -4,6 +4,7 @@ ruby '2.5.1'
 
 # Project requirements
 gem 'activerecord', '~> 3.0', :require => 'active_record'
+gem 'activerecord-postgresql-adapter'
 gem 'bundler'
 gem 'erubis', '~> 2.7.0'
 gem 'json'

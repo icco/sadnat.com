@@ -9,6 +9,8 @@ GEM
       activesupport (= 3.2.22.5)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
+    activerecord-postgresql-adapter (0.0.1)
+      pg
     activesupport (3.2.22.5)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
@@ -83,6 +85,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (~> 3.0)
+  activerecord-postgresql-adapter
   bundler
   erubis (~> 2.7.0)
   json

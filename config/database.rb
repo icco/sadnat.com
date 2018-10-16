@@ -1,5 +1,8 @@
 ##
 # Database config for relational db.
+RACK_ENV = ENV['RACK_ENV'] ||= 'development'  unless defined?(RACK_ENV)
+RACK_ENV = RACK_ENV.to_sym
+
 init = Time.now
 connections = {
   :development => "postgres://localhost/sadnat",
@@ -8,7 +11,7 @@ connections = {
 }
 
 # Setup our logger
-ActiveRecord::Base.logger = logger
+ActiveRecord::Base.logger = Logger.new(STDOUT)
 
 # Include Active Record class name as root for JSON serialized output.
 ActiveRecord::Base.include_root_in_json = true
@@ -37,8 +40,8 @@ ActiveRecord::Base.include_root_in_json = false
 ActiveRecord::Base.store_full_sti_class = true
 
 # Now we can estabilish connection with our db
-if connections[Padrino.env]
-  url = URI(connections[Padrino.env])
+if connections[RACK_ENV]
+  url = URI(connections[RACK_ENV])
   options = {
     :adapter => url.scheme,
     :host => url.host,
@@ -56,10 +59,7 @@ if connections[Padrino.env]
     options[:adapter] = "postgresql"
   end
 
-  # Log what we are connecting to.
-  logger.bench "DB", init, "#{options.inspect}", :devel, :green
-
   ActiveRecord::Base.establish_connection(options)
 else
-  logger.push("No database configuration for #{Padrino.env.inspect}", :fatal)
+  raise "No database configuration for #{RACK_ENV.inspect}"
 end
