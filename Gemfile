@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.4.0'
 
 # Project requirements
-gem 'activerecord', '~> 3.0', :require => 'active_record'
+gem 'activerecord', '~> 4.0', '>= 4.0.3'
 gem 'bundler'
 gem 'erubis', '~> 2.7.0'
 gem 'json'
