@@ -8,6 +8,8 @@ module Sadnat
     set :protection, true
     set :protect_from_csrf, true
 
+    logger = Logger.new(STDOUT)
+
     if not ENV['SESSION_SECRET']
       logger.warn "SESSION SECRET IS NOT SECURE."
     end
