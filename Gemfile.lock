@@ -45,7 +45,7 @@ GEM
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
-    pg (1.1.4)
+    pg (0.21.0)
     rack (2.0.7)
     rack-protection (2.0.5)
       rack
@@ -95,7 +95,7 @@ DEPENDENCIES
   minitest
   multi_json
   omniauth-twitter
-  pg
+  pg (~> 0.20)
   rack-protection
   rack-test
   rake
