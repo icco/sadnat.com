@@ -3,7 +3,7 @@ source "https://rubygems.org"
 ruby "2.5.5"
 
 # Project requirements
-gem "activerecord", "~> 4.0", ">= 4.0.3"
+gem "activerecord", "~> 4.0", ">= 4.0.3", :require => 'active_record'
 gem "activerecord-postgresql-adapter"
 gem "bundler"
 gem "erubis", "~> 2.7.0"
