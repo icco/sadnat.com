@@ -9,6 +9,8 @@ require 'bundler/setup'
 Bundler.require(:default, RACK_ENV)
 
 require File.expand_path("../config/database.rb", __FILE__)
+require File.expand_path("../app/entry.rb", __FILE__)
+require File.expand_path("../app/time.rb", __FILE__)
 require File.expand_path("../app/app.rb", __FILE__)
 
 run Sadnat::App
