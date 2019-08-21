@@ -1,6 +1,6 @@
 ##
 # Database config for relational db.
-RACK_ENV = (ENV['RACK_ENV'] ||= 'development').to_sym unless defined?(RACK_ENV)
+RACK_ENV = (ENV['RACK_ENV'] ||= 'development').to_sym
 
 init = Time.now
 connections = {
