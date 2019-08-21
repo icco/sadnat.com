@@ -2,21 +2,16 @@ require "google/cloud/logging"
 
 module Sadnat
   class App < Sinatra::Base
-    use ActiveRecord::ConnectionAdapters::ConnectionManagement
-    use Google::Cloud::Logging::Middleware
+    logger = Logger.new(STDOUT)
+    env['rack.logger'] = logger
 
-    Google::Cloud.configure do |config|
-      config.use_logging = true
-      config.trace.capture_stack = true
-    end
+    use ActiveRecord::ConnectionAdapters::ConnectionManagement
 
     enable :sessions
     enable :logging
     set :session_secret, ENV['SESSION_SECRET'] || '9asdjj66eeb73b629b5cc'
     set :protection, true
     set :protect_from_csrf, true
-
-    logger = Logger.new(STDOUT)
 
     if not ENV['SESSION_SECRET']
       logger.warn "SESSION SECRET IS NOT SECURE."
