@@ -34,7 +34,6 @@ ActiveRecord::Base.store_full_sti_class = true
 # Now we can estabilish connection with our db
 if connections[RACK_ENV]
   url = URI(connections[RACK_ENV])
-  p connections, url
   options = {
     :adapter => url.scheme,
     :host => url.host,
