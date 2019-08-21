@@ -13,6 +13,8 @@ gem "minitest", :require => "minitest/autorun", :group => "test"
 gem "multi_json"
 gem "omniauth-twitter" # https://github.com/arunagw/omniauth-twitter
 gem "pg", "~> 0.20"
+gem "pry"
+gem "pry-remote"
 gem "rack-protection", :require => "rack/protection"
 gem "rack-test", :require => "rack/test", :group => "test"
 gem "rake"
