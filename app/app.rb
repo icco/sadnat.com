@@ -3,7 +3,7 @@ require "google/cloud/logging"
 module Sadnat
   class App < Sinatra::Base
     logger = Logger.new(STDOUT)
-    env['rack.logger'] = logger
+    use Rack::CommonLogger, STDOUT
 
     use ActiveRecord::ConnectionAdapters::ConnectionManagement
 
