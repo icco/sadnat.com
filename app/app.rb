@@ -1,6 +1,8 @@
 module Sadnat
   class App < Sinatra::Base
     use ActiveRecord::ConnectionAdapters::ConnectionManagement
+    register Padrino::Rendering
+    register Padrino::Helpers
 
     enable :sessions
     enable :logging
@@ -42,7 +44,7 @@ module Sadnat
     # Main index, lists all entries
     get '/' do
       @entries = Entry.where(:show => true).order("date desc").all
-      render :index
+      erb :index
     end
 
     # Posted to to create new entry
@@ -77,11 +79,11 @@ module Sadnat
     # About page.
     get '/about' do
       @total_count = Entry.where(:show => true).order("date desc").all.count
-      render :about
+      erb :about
     end
 
     get '/fail' do
-      render :fail
+      erb :fail
     end
 
     # Individual entry view
@@ -91,7 +93,7 @@ module Sadnat
       if not @entry
         404
       else
-        render :view
+        erb :view
       end
     end
 

@@ -12,6 +12,7 @@ gem "logger"
 gem "minitest", :require => "minitest/autorun", :group => "test"
 gem "multi_json"
 gem "omniauth-twitter" # https://github.com/arunagw/omniauth-twitter
+gem "padrino-helpers"
 gem "pg", "~> 0.20"
 gem "rack-protection", :require => "rack/protection"
 gem "rack-test", :require => "rack/test", :group => "test"
