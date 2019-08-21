@@ -14,7 +14,7 @@
       <div class="update">
         <p class="intro">Nat is sad because...</p>
 
-        <% form_tag '/', :method => :post do %>
+        <form action='/' method="post">
           <input class="reason" type="text" name="reason" maxlength="255" />
           <input class="submit" type="image" src="images/submit.png" alt="Submit" />
 
@@ -34,7 +34,7 @@
             </label>
           </span>
           </p>
-        <% end %>
+        </form>
       </div>
     </div>
 
