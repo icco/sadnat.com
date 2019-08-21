@@ -50,6 +50,7 @@ module Sadnat
     # Main index, lists all entries
     get '/' do
       @entries = Entry.where(:show => true).order("date desc").all
+      binding.remote_pry
       erb :index
     end
 
