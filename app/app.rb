@@ -1,8 +1,6 @@
 module Sadnat
   class App < Sinatra::Base
     use ActiveRecord::ConnectionAdapters::ConnectionManagement
-    register Padrino::Rendering
-    register Padrino::Helpers
 
     enable :sessions
     enable :logging
