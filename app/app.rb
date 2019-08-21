@@ -9,6 +9,10 @@ module Sadnat
 
     enable :sessions
     enable :logging
+
+    set :public_folder, File.join(File.dirname(__FILE__), "..", 'public')
+    set :static_cache_control, [:public, :max_age => 600]
+
     set :session_secret, ENV['SESSION_SECRET'] || '9asdjj66eeb73b629b5cc'
     set :protection, true
     set :protect_from_csrf, true
