@@ -1,6 +1,14 @@
+require "google/cloud/logging"
+
 module Sadnat
   class App < Sinatra::Base
     use ActiveRecord::ConnectionAdapters::ConnectionManagement
+    use Google::Cloud::Logging::Middleware
+
+    Google::Cloud.configure do |config|
+      config.use_logging = true
+      config.trace.capture_stack = true
+    end
 
     enable :sessions
     enable :logging

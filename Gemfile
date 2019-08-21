@@ -20,6 +20,7 @@ gem "rr", :group => "test"
 gem "sanitize"
 gem "sass"
 gem "sinatra-flash", :require => "sinatra/flash"
+gem "stackdriver"
 gem "thin"
 
 # For dev
