@@ -15,6 +15,7 @@ gem "omniauth-twitter" # https://github.com/arunagw/omniauth-twitter
 gem "pg", "~> 0.20"
 gem "pry"
 gem "pry-remote"
+gem "puma"
 gem "rack-protection", :require => "rack/protection"
 gem "rack-test", :require => "rack/test", :group => "test"
 gem "rake"
@@ -23,7 +24,6 @@ gem "sanitize"
 gem "sassc"
 gem "sinatra-flash", :require => "sinatra/flash"
 gem "stackdriver"
-gem "thin"
 
 # For dev
 group :development do

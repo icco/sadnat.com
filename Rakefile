@@ -3,7 +3,7 @@ require "active_record"
 
 desc "Run a local server."
 task :local do
-  Kernel.exec("shotgun -s thin -p 9393")
+  Kernel.exec("shotgun -s puma -p 9393")
 end
 
 namespace :db do
