@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "2.5.5"
+ruby "2.6.0"
 
 # Project requirements
 gem "activerecord", "~> 4.0", ">= 4.0.3", :require => "active_record"
