@@ -6,7 +6,7 @@ class CreateEntries < ActiveRecord::Migration
       t.text :response
       t.datetime :date
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 
