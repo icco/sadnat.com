@@ -10,3 +10,4 @@ bin/*
 log/**/*
 tmp/**/*
 vendor/gems/*
+.env
