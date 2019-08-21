@@ -1,12 +1,12 @@
 ##
 # Database config for relational db.
-RACK_ENV = (ENV['RACK_ENV'] ||= 'development').to_sym
+RACK_ENV = (ENV["RACK_ENV"] ||= "development").to_sym unless defined?(RACK_ENV)
 
 init = Time.now
 connections = {
   :development => "postgres://localhost/sadnat",
   :test => "postgres://postgres@localhost/sadnat_test",
-  :production => ENV['DATABASE_URL']
+  :production => ENV["DATABASE_URL"]
 }
 
 # Setup our logger
