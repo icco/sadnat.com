@@ -22,7 +22,7 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.2.3)
     concurrent-ruby (1.1.5)
-    crass (1.0.4)
+    crass (1.0.5)
     debug_inspector (0.0.3)
     erubis (2.7.0)
     faraday (0.15.4)
@@ -91,9 +91,9 @@ GEM
     multipart-post (2.1.1)
     mustermann (1.0.3)
     nio4r (2.4.0)
-    nokogiri (1.10.4)
+    nokogiri (1.10.5)
       mini_portile2 (~> 2.4.0)
-    nokogumbo (2.0.1)
+    nokogumbo (2.0.2)
       nokogiri (~> 1.8, >= 1.8.4)
     oauth (0.5.4)
     omniauth (1.9.0)
@@ -118,7 +118,7 @@ GEM
     rake (12.3.3)
     rly (0.2.3)
     rr (1.2.1)
-    sanitize (5.0.0)
+    sanitize (5.1.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.8.0)
       nokogumbo (~> 2.0)
@@ -169,7 +169,7 @@ DEPENDENCIES
   rack-test
   rake
   rr
-  sanitize
+  sanitize (>= 5.0.0)
   sassc
   shotgun
   sinatra-flash
