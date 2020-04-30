@@ -88,7 +88,7 @@ GEM
     hashie (3.6.0)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
-    json (2.2.0)
+    json (2.3.0)
     jwt (2.2.1)
     logger (1.4.1)
     memoist (0.16.2)
@@ -165,7 +165,7 @@ DEPENDENCIES
   activerecord-postgresql-adapter
   bundler
   erubis (~> 2.7.0)
-  json
+  json (>= 2.3.0)
   logger
   minitest
   multi_json
