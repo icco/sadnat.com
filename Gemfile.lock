@@ -1,27 +1,25 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activemodel (4.2.11.1)
-      activesupport (= 4.2.11.1)
-      builder (~> 3.1)
-    activerecord (4.2.11.1)
-      activemodel (= 4.2.11.1)
-      activesupport (= 4.2.11.1)
-      arel (~> 6.0)
+    activemodel (5.2.4.3)
+      activesupport (= 5.2.4.3)
+    activerecord (5.2.4.3)
+      activemodel (= 5.2.4.3)
+      activesupport (= 5.2.4.3)
+      arel (>= 9.0)
     activerecord-postgresql-adapter (0.0.1)
       pg
-    activesupport (4.2.11.1)
-      i18n (~> 0.7)
+    activesupport (5.2.4.3)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (>= 0.7, < 2)
       minitest (~> 5.1)
-      thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
-    arel (6.0.4)
+    arel (9.0.0)
     binding_of_caller (0.8.0)
       debug_inspector (>= 0.0.1)
-    builder (3.2.3)
-    concurrent-ruby (1.1.5)
+    concurrent-ruby (1.1.6)
     crass (1.0.5)
     debug_inspector (0.0.3)
     erubis (2.7.0)
@@ -86,14 +84,14 @@ GEM
       google-protobuf (~> 3.8)
       googleapis-common-protos-types (~> 1.0)
     hashie (3.6.0)
-    i18n (0.9.5)
+    i18n (1.8.2)
       concurrent-ruby (~> 1.0)
     json (2.2.0)
     jwt (2.2.1)
     logger (1.4.1)
     memoist (0.16.2)
     mini_portile2 (2.4.0)
-    minitest (5.13.0)
+    minitest (5.14.1)
     multi_json (1.14.1)
     multipart-post (2.1.1)
     mustermann (1.0.3)
@@ -154,14 +152,14 @@ GEM
       google-cloud-core (~> 1.2)
     thread_safe (0.3.6)
     tilt (2.0.10)
-    tzinfo (1.2.5)
+    tzinfo (1.2.7)
       thread_safe (~> 0.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord (~> 4.0, >= 4.0.3)
+  activerecord (~> 5.2, >= 5.2.4.3)
   activerecord-postgresql-adapter
   bundler
   erubis (~> 2.7.0)
