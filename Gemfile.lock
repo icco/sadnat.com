@@ -85,7 +85,7 @@ GEM
     grpc (1.25.0)
       google-protobuf (~> 3.8)
       googleapis-common-protos-types (~> 1.0)
-    hashie (3.6.0)
+    hashie (4.1.0)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     json (2.3.0)
@@ -102,9 +102,9 @@ GEM
       mini_portile2 (~> 2.4.0)
     nokogumbo (2.0.2)
       nokogiri (~> 1.8, >= 1.8.4)
-    oauth (0.5.4)
-    omniauth (1.9.0)
-      hashie (>= 3.4.6, < 3.7.0)
+    oauth (0.5.5)
+    omniauth (1.9.1)
+      hashie (>= 3.4.6)
       rack (>= 1.6.2, < 3)
     omniauth-oauth (1.1.0)
       oauth
@@ -169,7 +169,7 @@ DEPENDENCIES
   logger
   minitest
   multi_json
-  omniauth-twitter
+  omniauth-twitter (>= 1.4.0)
   pg (~> 0.20)
   puma (>= 4.3.3)
   rack-protection
