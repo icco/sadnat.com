@@ -11,7 +11,7 @@ gem "json"
 gem "logger"
 gem "minitest", :require => "minitest/autorun", :group => "test"
 gem "multi_json"
-gem "omniauth-twitter" # https://github.com/arunagw/omniauth-twitter
+gem "omniauth-twitter" , ">= 1.4.0" # https://github.com/arunagw/omniauth-twitter
 gem "pg", "~> 0.20"
 gem "puma", ">= 4.3.3"
 gem "rack-protection", :require => "rack/protection"
