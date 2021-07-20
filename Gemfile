@@ -21,7 +21,7 @@ gem "rr", :group => "test"
 gem "sanitize", ">= 5.2.1"
 gem "sassc"
 gem "sinatra-flash", :require => "sinatra/flash"
-gem "stackdriver"
+gem "stackdriver", ">= 0.16.0"
 
 # For dev
 group :development do
